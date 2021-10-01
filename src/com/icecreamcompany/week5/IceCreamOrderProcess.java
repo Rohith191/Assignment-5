@@ -1,25 +1,33 @@
 package com.icecreamcompany.week5;
 
-public class IceCreamOrder {
+public class IceCreamOrderProcess {
 	public DeliveryOrderState orderState;
-	public IceCreamOrder()
+	public IceCreamOrderProcess()
+	{
+	}
+	public void startNewIceCreamOrderProcess()
 	{
 		orderState = new MakeSelectionState(this);
 	}
 	
-	public void goToNextStep()
+	public void proceedToNextStep()
 	{
-		orderState.goToNextStep();
+		orderState.proceedToNextStep();
 	}
 	
-	public void goToPreviousStep()
+	public void goBackToPreviousStep()
 	{
-		orderState.goToPreviousStep();
+		orderState.goBackToPreviousStep();
 	}
 	
 	public void printStep()
 	{
 		System.out.println("Current Step is "+orderState.getStep());
+	}
+	
+	public void cancelOrder()
+	{
+		orderState.cancelOrder();
 	}
 
 	public void setState(DeliveryOrderState orderState) {

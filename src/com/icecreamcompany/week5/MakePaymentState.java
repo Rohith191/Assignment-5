@@ -1,20 +1,20 @@
 package com.icecreamcompany.week5;
 
 public class MakePaymentState implements DeliveryOrderState {
-	IceCreamOrder _order;
-	public MakePaymentState(IceCreamOrder order) 
+	IceCreamOrderProcess _order;
+	public MakePaymentState(IceCreamOrderProcess order) 
 	{
 		_order = order;
 		
 	}
 	
 	@Override
-	public void goToNextStep() {
+	public void proceedToNextStep() {
 		_order.setState(new AssignDeliveryPersonState(_order));
 	}
 
 	@Override
-	public void goToPreviousStep() {
+	public void goBackToPreviousStep() {
 		_order.setState(new MakeSelectionState(_order));
 	}
 
@@ -23,4 +23,8 @@ public class MakePaymentState implements DeliveryOrderState {
 		return "Make Payment";
 	}
 
+	@Override
+	public void cancelOrder() {
+		_order.setState(new OrderCancelledState(_order));
+	}
 }
